@@ -3,10 +3,14 @@ import { z } from "zod";
 export const schema = z.object({
   name: z
     .string()
+    .min(1, "Name is required")
     .regex(/^[a-zA-Z0-9]*$/, "Only alphanumeric characters are allowed")
     .max(255, "Maximum 255 characters allowed"),
 
-  company: z.string().max(255, "Maximum 255 characters allowed"),
+  company: z
+    .string()
+    .min(1, "Company name is required")
+    .max(255, "Maximum 255 characters allowed"),
 
   mobile_phone: z
     .string()

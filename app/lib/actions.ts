@@ -13,11 +13,16 @@ function wait(secs: number) {
   return new Promise((resolve) => setTimeout(resolve, secs * 1000));
 }
 
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://your-app.vercel.app"
+    : "http://localhost:3000";
+
 export async function getDealerships(
   config?: null | { delayInSecs: number }
 ): Promise<IApiResponse> {
   try {
-    const res = await fetch("http://localhost:3000/api/dealership", {
+    const res = await fetch(baseUrl + "/api/dealership", {
       next: {
         revalidate: 60,
         tags: ["dealerships_list"], // cache tag
@@ -58,7 +63,7 @@ export async function saveDealerships(data: FormData) {
     };
 
     // API endpoint'e POST request gönder
-    const response = await fetch("http://localhost:3000/api/dealership", {
+    const response = await fetch(baseUrl + "/api/dealership", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
