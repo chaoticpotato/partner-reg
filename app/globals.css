@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --text-myXl: 1.3125rem;
+  --text-myXl--line-height: 2rem;
+
+  --text-my2xl: 2.375rem;
+  --text-my2xl--line-height: 3.25rem;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --font-sans: var(--font-open-sans);
+  --font-oswald: var(--font-oswald);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-myBlack: rgb(27 27 27);
+  --color-myOrange: rgb(255 115 60);
+  --color-myGreen: rgb(50 190 80);
+  --color-myGreenDark: rgb(40 155 80);
+  --color-mySmoke: rgb(90 105 140);
+  --color-myRed: rgb(220 53 69);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-myBlack);
+  @apply font-sans;
+}
+
+@layer base {
+  .wrapper {
+    @apply max-w-6xl mx-auto px-4 sm:px-3;
+  }
+
+  .tab-link {
+    @apply text-sm leading-5 py-3 relative after:absolute after:bottom-0 after:h-1 after:rounded-t-full after:w-full after:left-0 after:bg-transparent hover:after:bg-white after:transition-colors;
+  }
+
+  .tab-link.isActive {
+    @apply after:bg-myOrange;
+  }
+
+  .myLink,
+  .cta-button {
+    @apply bg-myGreen active:bg-myBlack focus:bg-myBlack text-myBlack active:text-white hover:text-white focus:text-white border border-myBlack rounded-full inline-flex items-center gap-2.5 h-11 px-10 select-none transition-all font-sans;
+  }
+
+  .cta-button {
+    @apply cursor-pointer disabled:cursor-not-allowed disabled:opacity-60 disabled:pointer-events-none
+  }
+
+  .white-box {
+    @apply bg-white p-6 lg:p-8 rounded-2xl lg:rounded-[1.875rem] border border-myBlack;
+  }
+
+  .textbox {
+    @apply rounded-full border border-myBlack focus:border-myOrange focus:ring-0 focus-visible:outline-0 h-12 bg-white transition-colors px-4 font-sans w-full;
+  }
 }
