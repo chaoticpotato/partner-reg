@@ -15,7 +15,7 @@ function wait(secs: number) {
 
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://your-app.vercel.app"
+    ? "https://partner-reg.vercel.app"
     : "http://localhost:3000";
 
 export async function getDealerships(
