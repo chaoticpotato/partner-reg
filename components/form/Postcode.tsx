@@ -76,7 +76,7 @@ export default function Postcode({
             )}
           </div>
 
-          <ComboboxOptions className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-2xl bg-white py-1 text-base border border-myBlack focus:outline-none sm:text-sm">
+          <ComboboxOptions data-cy="suggestions" className="absolute z-10 mt-1 max-h-60 w-full overflow-auto rounded-2xl bg-white py-1 text-base border border-myBlack focus:outline-none sm:text-sm">
             {loading && (
               <div className="px-3 py-2 text-gray-500 text-sm">Searching</div>
             )}

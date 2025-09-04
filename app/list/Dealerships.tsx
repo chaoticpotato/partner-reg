@@ -2,7 +2,7 @@ import { getDealerships } from "../lib/actions";
 import DealershipsList from "./DealershipsList";
 
 export default async function Dealerships() {
-  const result = await getDealerships({ delayInSecs: 0.5 }); // for simulate server delay
+  const result = await getDealerships({ delayInSecs: 0 }); // for simulate server delay
 
   if (!result.success) {
     return (

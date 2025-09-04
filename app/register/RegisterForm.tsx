@@ -37,12 +37,14 @@ export default function RegisterForm() {
     mode: "onBlur",
     reValidateMode: "onChange",
     defaultValues: {
+      /*
       name: "Garage'n Stuff",
       company: "Bumper Tr",
       email_address: "info@bumber.co.uk",
       mobile_phone: "07413077351",
-      pay_options: [],
+      */
       postcode: "",
+      pay_options: [],
     },
   });
 

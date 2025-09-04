@@ -79,3 +79,44 @@ export async function POST(request: NextRequest) {
     );
   }
 }
+
+// DELETE
+export async function DELETE(request: NextRequest) {
+  try {
+    const { id: dealershipId } = await request.json();
+
+    console.log(dealershipId, "-------");
+
+    if (!dealershipId) {
+      throw new Error("Dealership ID is missing");
+    }
+
+    const existingData = await readDataFile();
+    const updatedData = existingData.filter(
+      (entry) => entry.id !== dealershipId
+    );
+
+    if (existingData.length === updatedData.length) {
+      throw new Error("Dealership not found");
+    }
+
+    await writeDataFile(updatedData);
+
+    return NextResponse.json(
+      {
+        success: true,
+        message: "Dealership deleted successfully",
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error("Error deleting dealership:", error);
+    return NextResponse.json(
+      {
+        success: false,
+        error: "Failed to delete dealership",
+      },
+      { status: 500 }
+    );
+  }
+}

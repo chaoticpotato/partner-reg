@@ -16,7 +16,7 @@ export default function Checkbox({
   hasError: boolean;
 }) {
   return (
-    <label key={val}>
+    <label data-cy="chItem">
       <input
         type="checkbox"
         className="custom-ch w-0 h-0 inline float-left opacity-0"

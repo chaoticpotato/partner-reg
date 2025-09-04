@@ -38,7 +38,10 @@ export async function getDealerships(config?: {
 
     const data = await res.json();
 
-    await wait(config ? config.delayInSecs : 0);
+    if (config) {
+      await wait(config.delayInSecs);
+    }
+
     return data;
   } catch (error) {
     console.error("Failed to fetch dealerships:", error);
@@ -94,6 +97,43 @@ export async function saveDealerships(data: FormData) {
     return {
       success: false,
       message: "An error occurred while saving data",
+      data: null,
+    };
+  }
+}
+
+export async function deleteDealership(id: string) {
+  try {
+    const response = await fetch(baseUrl + "/api/dealership", {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const result = await response.json();
+
+    if (result.success) {
+      revalidateTag("dealerships_list");
+
+      return {
+        success: true,
+        message: result.message || "Dealership deleted successfully!",
+        data: null,
+      };
+    } else {
+      throw new Error(result.error || "Failed to delete dealership");
+    }
+  } catch (error) {
+    console.error("Error deleting dealership:", error);
+    return {
+      success: false,
+      message: "An error occurred while deleting the dealership",
       data: null,
     };
   }

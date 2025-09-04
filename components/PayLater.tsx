@@ -28,8 +28,8 @@ function CoolListItem({ title, desc, order }: ICoolListItem) {
 
 export default function PayLater() {
   return (
-    <section className="wrapper py-10 sm:py-14 lg:py-18 flex items-center">
-      <div className="left space-y-6 flex-[12]">
+    <section className="wrapper py-10 sm:py-13 md:py-15 lg:py-18 flex items-start lg:items-center">
+      <div className="left space-y-6 md:flex-[27] lg:flex-[12]">
         <div>
           <div className="relative h-[19px] aspect-[126/32]">
             <Image src="/Logomark.svg" alt="Bumper Logomark" fill />
@@ -39,8 +39,7 @@ export default function PayLater() {
           </h2>
         </div>
         {/* mobile only */}
-        {/* TODO :: tablet view */}
-        <div className="block sm:hidden relative w-2/3 mx-auto aspect-[1474/2040]">
+        <div className="block md:hidden relative w-2/3 mx-auto aspect-[1474/2040] max-w-xs">
           <Image
             src="/payLater-visual@2x.webp"
             alt="Bumper Paylater: No risk to your business and customers"
@@ -52,7 +51,7 @@ export default function PayLater() {
           Give customers more flexibility at checkout, online and in store. Let
           them spread the cost with interest-free monthly payments.
         </p>
-        <div className="text-myOrange text-[28px] leading-[40px] lg:text-my2xl font-bold tracking-tight">
+        <div className="text-myOrange text-[28px] leading-[40px] md:text-3xl/normal lg:text-my4xl font-bold tracking-tight">
           <p>No risk to your business.</p>
           <p>No worries for your customers.</p>
         </div>
@@ -75,8 +74,10 @@ export default function PayLater() {
           <ArrowRightIcon size={24} weight="bold" />
         </CustomLink>
       </div>
-      <div className="flex-1 hidden sm:block" />
-      <div className="flex-[10] hidden sm:block">
+
+      <div className="flex-1 hidden md:block" />
+
+      <div className="md:flex-[18] lg:flex-[10] hidden md:block">
         <div className="relative w-full aspect-[1474/2040]">
           <Image
             src="/payLater-visual@2x.webp"

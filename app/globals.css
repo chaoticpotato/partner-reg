@@ -4,8 +4,8 @@
   --text-myXl: 1.3125rem;
   --text-myXl--line-height: 2rem;
 
-  --text-my2xl: 2.375rem;
-  --text-my2xl--line-height: 3.25rem;
+  --text-my4xl: 2.375rem;
+  --text-my4xl--line-height: 3.25rem;
 }
 
 @theme inline {
@@ -27,7 +27,7 @@ body {
 
 @layer base {
   .wrapper {
-    @apply max-w-6xl mx-auto px-4 sm:px-3;
+    @apply max-w-[73.25rem] mx-auto px-4 sm:px-6;
   }
 
   .tab-link {
@@ -84,5 +84,9 @@ body {
   .custom-ch:checked~.custom-ch-label .neutral,
   .custom-ch~.custom-ch-label .success {
     display: none;
+  }
+
+  ::selection {
+    @apply bg-[#34456d] text-white
   }
 }

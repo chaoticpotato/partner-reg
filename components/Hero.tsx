@@ -14,7 +14,7 @@ export default function Hero() {
             <Image src="/TrustPilot.webp" alt="TrustPilot Excellent" fill />
           </div>
 
-          <h1 className="pt-6 pb-1 lg:pt-8 lg:pb-4 font-oswald text-[38px] leading-[38px] lg:text-[77px] lg:leading-[80px] font-bold">
+          <h1 className="pt-6 pb-1 lg:pt-8 lg:pb-4 font-oswald text-[38px] leading-[38px] md:text-[58px] md:leading-[60px] lg:text-[77px] lg:leading-[80px] font-bold">
             BECOME A BUMPER APPROVED DEPENDABLE DEALERSHIP
           </h1>
           <p className="text-base/normal lg:text-myXl max-w-2xl">
