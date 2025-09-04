@@ -1,36 +1,38 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Hi Bumper Team!
 
-## Getting Started
+First of all, thank you. This was a project I truly enjoyed building.
+
+The project is live on Vercel. Due to a platform limitation that prevents file writing, you can browse the list, but adding a new entry is not supported. The link to see the project's overall design and functionality is: (https://partner-reg.vercel.app/)[https://partner-reg.vercel.app/]
+
+The project has three main pages:
+
+- `/`
+- `/list`
+- `/register`
+
+In this project, I:
+
+- **Stayed highly faithful to the provided design.** For unprovided details, I took the initiative to improvise and add minor features—like a button to the list page, an empty "search results" box, a loading box, and a success message after a form submission—to create a more complete and functional user flow.
+- **Focused on solving current problems while creating components.** I avoided adding things just because they "might be useful later," but I still chose flexible methods for future development.
+- **Avoided unnecessary abstractions to keep the code readable.** Although it was tempting to create a new component or function in a few places, I prioritized keeping the structure simple.
+- **Used Tailwind's `@apply` directive.** I could have done it without it, but I wanted to evaluate the useful aspects of CSS.
+- **Wrote unit tests** for the `Input` and `Checkbox` components.
+- **Created an e2e test with Cypress** to validate the entire registration form flow, which is the core of the application.
+- **Chose fetch and Next.js's caching mechanism** for data fetching to avoid increasing the bundle size.
+- **Substituted the corporate sans-serif font with Inter.** It's compatible with Oswald and, aside from a few letters, looks very similar to the corporate font.
+- **Used Phosphor Icons instead of the premium set from the Figma file.** A few icons look slightly different, but it's a bundle-size friendly solution thanks to tree-shaking.
+- **Noted that triggering form validations on blur might not be the best approach for checkboxes,** but I kept it that way as it was requested.
+
+---
+
+### Getting Started
+
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 First, run the development server:
 
 ```bash
-npm run dev
-# or
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
