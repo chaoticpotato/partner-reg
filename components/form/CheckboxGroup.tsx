@@ -16,6 +16,7 @@ export default function CheckboxGroup({
   desc,
   options,
   error,
+  isValid,
   ...rest
 }: ICheckboxGroup) {
   return (
