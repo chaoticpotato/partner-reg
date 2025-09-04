@@ -2,7 +2,7 @@
 
 First of all, thank you. This was a project I truly enjoyed building.
 
-The project is live on Vercel. Due to a platform limitation that prevents file writing, you can browse the list, but adding a new entry is not supported. The link to see the project's overall design and functionality is: (https://partner-reg.vercel.app/)[https://partner-reg.vercel.app/]
+The project is live on Vercel. Due to a platform limitation that prevents file writing, you can browse the list, but adding a new entry is not supported. The link to see the project's overall design and functionality is: [https://partner-reg.vercel.app/](https://partner-reg.vercel.app/)
 
 The project has three main pages:
 
