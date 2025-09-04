@@ -9,6 +9,15 @@ describe("Registration flow", () => {
     cy.get("h1").should("have.text", "Join our network");
   });
 
+  /*
+    This test:
+    - opens the registration page
+    - fills out the form
+    - submits the form
+    - navigates to the listing page
+    - verifies that the item it added is the most recent one
+    - and finally, deletes it.
+  */
   it("registers new partner on happy path", () => {
     const name = "NewName" + Math.round(Math.random() * 10000);
     cy.get('[name="name"]').type(name);

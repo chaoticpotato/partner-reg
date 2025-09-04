@@ -32,7 +32,7 @@ export default function Input({
           className={clsx(
             "textbox",
             error && "border-myRed",
-            isValid && "border-myGreen"
+            isValid && !error && "border-myGreen"
           )}
           {...rest}
         />
@@ -41,7 +41,7 @@ export default function Input({
             <ExclamationMarkIcon size={20} weight="bold" />
           </span>
         )}
-        {isValid && (
+        {isValid && !error && (
           <span className="field-status text-myGreen">
             <CheckIcon size={20} weight="bold" />
           </span>

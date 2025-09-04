@@ -1,6 +1,5 @@
 import { payLaterGoodies } from "@/app/static/payLater";
 import Image from "next/image";
-import Link from "next/link";
 import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
 import CustomLink from "./CustomLink";
 
@@ -68,7 +67,7 @@ export default function PayLater() {
         </ul>
         <CustomLink
           href="/register"
-          className="h-12 sm:h-14 text-base/normal lg:text-myXl pl-7 pr-3.5 lg:px-10"
+          className="h-12 sm:h-14 text-base/normal lg:text-myXl px-7 sm:px-10"
         >
           <span>Register your interest</span>
           <ArrowRightIcon size={24} weight="bold" />
