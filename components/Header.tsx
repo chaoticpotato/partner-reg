@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { SignInIcon } from "@phosphor-icons/react/ssr";
-
+import CustomLink from "./CustomLink";
 
 export default function Header() {
   return (
@@ -17,7 +17,10 @@ export default function Header() {
               For drivers
             </Link>
           </div>
-          <Link href="#" className="hidden sm:inline-flex items-center gap-2 border border-white h-7 rounded pl-3 pr-2 text-sm">
+          <Link
+            href="#"
+            className="hidden sm:inline-flex items-center gap-2 border border-white h-7 rounded pl-3 pr-2 text-sm"
+          >
             <span>Partner login</span>
             <SignInIcon size={16} weight="bold" />
           </Link>
@@ -31,12 +34,12 @@ export default function Header() {
           <span className="mr-auto mx-2 font-bold text-sm lg:text-base">
             for business
           </span>
-          <Link
+          <CustomLink
             href="/register"
-            className="myLink rounded h-7 lg:h-8 px-3 text-sm lg:text-base"
+            className="rounded h-7 lg:h-8 px-3 text-sm lg:text-base"
           >
             Register
-          </Link>
+          </CustomLink>
         </div>
       </div>
     </header>

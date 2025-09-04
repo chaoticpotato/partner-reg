@@ -9,7 +9,7 @@
 }
 
 @theme inline {
-  --font-sans: var(--font-open-sans);
+  --font-sans: var(--font-inter);
   --font-oswald: var(--font-oswald);
 
   --color-myBlack: rgb(27 27 27);
@@ -31,7 +31,7 @@ body {
   }
 
   .tab-link {
-    @apply text-sm leading-5 py-3 relative after:absolute after:bottom-0 after:h-1 after:rounded-t-full after:w-full after:left-0 after:bg-transparent hover:after:bg-white after:transition-colors;
+    @apply text-sm leading-5 py-3 relative after:absolute after:bottom-0 after:h-1 after:rounded-t-full after:w-full after:left-0 after:bg-transparent hover:after:bg-white after:transition-colors after:duration-150;
   }
 
   .tab-link.isActive {
@@ -40,11 +40,11 @@ body {
 
   .myLink,
   .cta-button {
-    @apply bg-myGreen active:bg-myBlack focus:bg-myBlack text-myBlack active:text-white hover:text-white focus:text-white border border-myBlack rounded-full inline-flex items-center gap-2.5 h-11 px-10 select-none transition-all font-sans;
+    @apply bg-myGreen active:bg-myBlack focus:bg-myBlack text-myBlack active:text-white hover:text-white focus:text-white border border-myBlack rounded-full inline-flex items-center gap-2.5 h-11 px-10 select-none transition-all duration-150 font-sans;
   }
 
   .cta-button {
-    @apply cursor-pointer disabled:cursor-not-allowed disabled:opacity-60 disabled:pointer-events-none
+    @apply cursor-pointer disabled:cursor-not-allowed disabled:opacity-60 disabled:pointer-events-none;
   }
 
   .white-box {
@@ -52,6 +52,29 @@ body {
   }
 
   .textbox {
-    @apply rounded-full border border-myBlack focus:border-myOrange focus:ring-0 focus-visible:outline-0 h-12 bg-white transition-colors px-4 font-sans w-full;
+    @apply rounded-full border border-myBlack focus:border-myOrange focus:ring-0 focus-visible:outline-0 h-12 bg-white transition-colors duration-150 px-4 font-sans w-full;
+  }
+
+  .field-status {
+    @apply absolute right-0 -translate-x-full top-1/2 -translate-y-1/2 size-5 pointer-events-none select-none;
+  }
+
+  /* custom checkbox */
+  .custom-ch-label {
+    @apply text-sm lg:text-base leading-5.5 py-3 px-4 inline-flex gap-3 items-center rounded-full border cursor-pointer transition-all duration-150 select-none hover:bg-[#DCE6E6];
+  }
+
+  .custom-ch:checked~.custom-ch-label {
+    @apply bg-myBlack text-white;
+  }
+
+  .custom-ch:checked~.custom-ch-label .success,
+  .custom-ch~.custom-ch-label .neutral {
+    display: block;
+  }
+
+  .custom-ch:checked~.custom-ch-label .neutral,
+  .custom-ch~.custom-ch-label .success {
+    display: none;
   }
 }

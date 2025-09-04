@@ -1,7 +1,7 @@
 import Header from "@/components/Header";
 import Spinner from "@/components/Spinner";
 import { Suspense } from "react";
-import { DealershipsList } from "./DealershipsList";
+import Dealerships from "./Dealerships";
 
 export default function List() {
   return (
@@ -12,7 +12,7 @@ export default function List() {
           Interested Dealerships
         </h1>
         <Suspense fallback={<Spinner />}>
-          <DealershipsList />
+          <Dealerships />
         </Suspense>
       </div>
     </main>

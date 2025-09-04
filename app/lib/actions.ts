@@ -1,6 +1,6 @@
 "use server";
 
-import { IDealership } from "./types";
+import { IDealership, IFormPostData } from "./types";
 import { revalidateTag } from "next/cache";
 
 interface IApiResponse {
@@ -18,9 +18,9 @@ const baseUrl =
     ? "https://partner-reg.vercel.app"
     : "http://localhost:3000";
 
-export async function getDealerships(
-  config?: null | { delayInSecs: number }
-): Promise<IApiResponse> {
+export async function getDealerships(config?: {
+  delayInSecs: number;
+}): Promise<IApiResponse> {
   try {
     const res = await fetch(baseUrl + "/api/dealership", {
       next: {
@@ -52,17 +52,17 @@ export async function getDealerships(
 
 export async function saveDealerships(data: FormData) {
   try {
-    const formDataObj = {
+    const formDataObj: IFormPostData = {
       name: data.get("name") as string,
       company: data.get("company") as string,
       mobile_phone: data.get("mobile_phone") as string,
       email_address: data.get("email_address") as string,
-      /* postcode: data.get("postcode") as string,
-      pay_later: data.get("pay_later") as string,
-      pay_now: data.get("pay_now") as string, */
+      postcode: data.get("postcode") as string,
+      pay_later: JSON.parse(data.get("pay_later") as "true" | "false"),
+      pay_now: JSON.parse(data.get("pay_now") as "true" | "false"),
     };
 
-    // API endpoint'e POST request gönder
+    // API endpointe POST request
     const response = await fetch(baseUrl + "/api/dealership", {
       method: "POST",
       headers: {

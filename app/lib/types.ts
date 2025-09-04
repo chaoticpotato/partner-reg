@@ -4,10 +4,14 @@ export interface IFormData {
   mobile_phone: string;
   email_address: string;
   postcode: string;
-  pay_later: boolean;
-  pay_now: boolean;
+  pay_options: string[];
 }
 
-export interface IDealership extends IFormData {
+export interface IFormPostData extends Omit<IFormData, "pay_options"> {
+  pay_now: boolean;
+  pay_later: boolean;
+}
+
+export interface IDealership extends IFormPostData {
   id: string;
 }

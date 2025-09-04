@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
 import { promises as fs } from "fs";
 import path from "path";
-import { IFormData } from "@/app/lib/types";
+import { IDealership, IFormPostData } from "@/app/lib/types";
 
 const MY_DB = path.join(process.cwd(), "data", "storage.json");
 
 // Read file
-async function readDataFile(): Promise<IFormData[]> {
+async function readDataFile(): Promise<IDealership[]> {
   try {
     const fileContent = await fs.readFile(MY_DB, "utf-8");
     return JSON.parse(fileContent);
@@ -17,7 +17,7 @@ async function readDataFile(): Promise<IFormData[]> {
 }
 
 // Write to file
-async function writeDataFile(data: IFormData[]): Promise<void> {
+async function writeDataFile(data: IDealership[]): Promise<void> {
   await fs.writeFile(MY_DB, JSON.stringify(data, null, 2));
 }
 
@@ -46,10 +46,10 @@ export async function GET() {
 // POST
 export async function POST(request: NextRequest) {
   try {
-    const body = await request.json();
+    const body: IFormPostData = await request.json();
 
-    // Create new form entry
-    const newEntry: IFormData = {
+    // Create new entry
+    const newEntry: IDealership = {
       id: crypto.randomUUID(),
       ...body,
     };

@@ -4,7 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
-import { InputField } from "@/components/InputField";
+import Input from "@/components/form/Input";
 
 import {
   UserIcon,
@@ -18,6 +18,11 @@ import { saveDealerships } from "../lib/actions";
 import { IFormData, schema } from "./schema";
 import Link from "next/link";
 
+import SuccessFrame from "./SuccessFrame";
+import { prepareData } from "../lib/utils";
+import CheckboxGroup from "@/components/form/CheckboxGroup";
+import { WrenchIcon } from "@phosphor-icons/react/dist/ssr";
+
 export default function RegisterForm() {
   const {
     register,
@@ -29,10 +34,14 @@ export default function RegisterForm() {
     resolver: zodResolver(schema),
     mode: "onBlur",
     reValidateMode: "onChange",
-    /* defaultValues: {
-      pay_later: false,
-      pay_now: false,
-    }, */
+    defaultValues: {
+      name: "Garage'n Stuff",
+      company: "Bumper Tr",
+      email_address: "info@bumber.co.uk",
+      mobile_phone: "07413077351",
+      pay_options: [],
+      postcode: "",
+    },
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,14 +49,13 @@ export default function RegisterForm() {
 
   const onValid = async (data: IFormData) => {
     setIsSubmitting(true);
-    const formData = new FormData();
+    /* console.log(data, 222);
+    return; */
 
-    Object.entries(data).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
+    const dataToSend = prepareData(data);
 
     try {
-      const result = await saveDealerships(formData);
+      const result = await saveDealerships(dataToSend);
       if (result.success) {
         setIsRegistered(true);
         reset();
@@ -61,21 +69,21 @@ export default function RegisterForm() {
 
   return !isRegistered ? (
     <form onSubmit={handleSubmit(onValid)} className="space-y-6 lg:space-y-8">
-      <InputField
+      <Input
         icon={UserIcon}
         label="Name"
         {...register("name")}
         error={errors?.name?.message}
         isValid={!errors.name && watch("name")?.length > 0}
       />
-      <InputField
+      <Input
         icon={BuildingIcon}
         label="Company"
         {...register("company")}
         error={errors.company?.message}
         isValid={!errors.company && watch("company")?.length > 0}
       />
-      <InputField
+      <Input
         icon={DeviceMobileCameraIcon}
         label="Mobile phone number"
         {...register("mobile_phone")}
@@ -83,7 +91,7 @@ export default function RegisterForm() {
         placeholder="10 digits, starts with 07xx"
         isValid={!errors.mobile_phone && watch("mobile_phone")?.length > 0}
       />
-      <InputField
+      <Input
         icon={EnvelopeSimpleIcon}
         label="Email address"
         {...register("email_address")}
@@ -91,6 +99,30 @@ export default function RegisterForm() {
         placeholder="example@somewhere.com"
         isValid={!errors.email_address && watch("email_address")?.length > 0}
       />
+
+      <Input
+        icon={EnvelopeSimpleIcon}
+        label="Postcode"
+        {...register("postcode")}
+        error={errors.postcode?.message}
+        placeholder="Start typing to match your address"
+        isValid={!errors.postcode && watch("postcode")?.length > 0}
+      />
+
+      <CheckboxGroup
+        title="What services are you interested in?"
+        desc="Please select the services you're interested in offering your
+          customers"
+        options={[
+          { label: "PayLater", value: "pay_later" },
+          { label: "PayNow", value: "pay_now" },
+        ]}
+        icon={WrenchIcon}
+        error={errors.pay_options?.message}
+        isValid={!errors.pay_options && watch("pay_options")?.length > 0}
+        {...register("pay_options")}
+      />
+
       <button
         type="submit"
         className="cta-button w-full justify-center"
@@ -107,14 +139,6 @@ export default function RegisterForm() {
       </div>
     </form>
   ) : (
-    <div className="p-7 bg-myGreen/30 border border-myGreen rounded-3xl mt-0 -m-6 flex items-center justify-between">
-      <div>
-        <h2 className="text-xl text-green-700 mb-1 font-semibold">
-          You are successfully registered.
-        </h2>
-        <p>You can find yourself on the list.</p>
-      </div>
-      <Link href="/list" className="myLink pl-5 pr-4 rounded-xl"><span>Show me</span><ArrowRightIcon size={20} /></Link>
-    </div>
+    <SuccessFrame />
   );
 }

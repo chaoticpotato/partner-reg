@@ -9,19 +9,18 @@ interface IInput extends React.InputHTMLAttributes<HTMLInputElement> {
   isValid?: boolean;
 }
 
-export function InputField({
+export default function Input({
   icon: IconComponent,
   label,
   error,
   isValid,
   ...rest
 }: IInput) {
-
   return (
     <label className="form-line flex flex-col w-full">
       <span className="form-label flex items-center gap-1.5 mb-[7px]">
         {IconComponent && (
-          <span className="shrink-0 text-myOrange" >
+          <span className="shrink-0 text-myOrange">
             <IconComponent size={20} weight="fill" />
           </span>
         )}
@@ -37,13 +36,19 @@ export function InputField({
           )}
           {...rest}
         />
-        {error && <span className="absolute right-4 top-3.5 size-5 text-myRed"><ExclamationMarkIcon size={20} weight="bold" /></span>}
-        {isValid && <span className="absolute right-4 top-3.5 size-5 text-myGreen"><CheckIcon size={20} weight="bold" /></span>}
+        {error && (
+          <span className="field-status text-myRed">
+            <ExclamationMarkIcon size={20} weight="bold" />
+          </span>
+        )}
+        {isValid && (
+          <span className="field-status text-myGreen">
+            <CheckIcon size={20} weight="bold" />
+          </span>
+        )}
       </span>
 
-      {error && (
-        <span className="block mt-[7px] text-myRed">{error}</span>
-      )}
+      {error && <span className="block mt-[7px] text-myRed">{error}</span>}
     </label>
   );
 }

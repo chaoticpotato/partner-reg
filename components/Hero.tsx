@@ -2,6 +2,7 @@ import Image from "next/image";
 import Header from "./Header";
 import Link from "next/link";
 import { ArrowRightIcon } from "@phosphor-icons/react/ssr";
+import CustomLink from "./CustomLink";
 
 export default function Hero() {
   return (
@@ -21,10 +22,10 @@ export default function Hero() {
             Bumper to their customers.
           </p>
           <div className="mt-6 mb-3">
-            <Link href="/register" className="myLink h-12 sm:h-11 pl-4 pr-3">
+            <CustomLink href="/register" className="h-12 sm:h-11 pl-4 pr-3">
               <span>Register your interest</span>
               <ArrowRightIcon size={20} weight="bold" />
-            </Link>
+            </CustomLink>
           </div>
           <span className="text-base/normal">
             Already registered?{" "}

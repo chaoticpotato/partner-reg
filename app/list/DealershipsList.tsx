@@ -1,55 +1,56 @@
-import { getDealerships } from "../lib/actions";
+"use client";
+import { useMemo, useState } from "react";
+import useDebounce from "../hooks/useDebounce";
 import { IDealership } from "../lib/types";
+import DealershipItem from "./DealershipItem";
+import { XIcon, BuildingIcon } from "@phosphor-icons/react";
 
-function DealershipItem({ item }: { item: IDealership }) {
-  return (
-    <article className="white-box text-sm lg:text-base leading-normal">
-      <h2 className="text-base/normal lg:text-myXl font-bold mb-5">{item.name}</h2>
-      <div className="flex justify-between py-4 border-y border-[#CDD2DC]">
-        <p className="font-bold">Company</p>
-        <p>{item.company}</p>
-      </div>
-      <div className="flex justify-between py-4 border-b border-[#CDD2DC]">
-        <p className="font-bold">Mobile phone number</p>
-        <p>{item.mobile_phone}</p>
-      </div>
-      <div className="flex justify-between py-4 border-b border-[#CDD2DC]">
-        <p className="font-bold">Email address</p>
-        <p>{item.email_address}</p>
-      </div>
-      <div className="flex justify-between py-4 border-b border-[#CDD2DC]">
-        <p className="font-bold">Postcode</p>
-        <p>{item.postcode}</p>
-      </div>
-    </article>
-  );
-}
+export default function DealershipsList({ data }: { data: IDealership[] }) {
+  const [search, setSearch] = useState("");
+  const searchTerm = useDebounce(search, 300);
 
-export async function DealershipsList() {
-  const result = await getDealerships({ delayInSecs: 1 }); // for simulate delay
+  const filteredData = useMemo(() => {
+    if (!searchTerm) return data;
 
-  if (!result.success) {
-    return (
-      <div className="bg-red-50 border border-red-200 rounded-lg p-6 text-center max-w-xs mx-auto">
-        <p className="text-red-600">{result.error || "Something went wrong"}</p>
-      </div>
+    return data.filter((dealership) =>
+      dealership.company?.toLowerCase().includes(searchTerm.toLowerCase())
     );
-  }
-
-  if (result.data.length === 0) {
-    return (
-      <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 text-center max-w-xs mx-auto">
-        <p className="text-blue-600">No dealership yet</p>
-      </div>
-    );
-  }
+  }, [data, searchTerm]);
 
   return (
     <section className="px-0 lg:px-[3px] space-y-3 lg:space-y-5">
-      <div className="white-box">search area</div>
-      {result.data.map((item) => (
-        <DealershipItem item={item} key={item.id} />
-      ))}
+      <div className="white-box">
+        <label className="flex gap-1.5 items-center font-bold text-base/normal mb-1.5 w-full" htmlFor="search">
+          <BuildingIcon size={20} className="shrink-0 text-myOrange" weight="fill" />
+          Search Company
+        </label>
+        <div className="relative">
+          <input
+            className="textbox"
+            id="search"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Start typing name, company, phone or email for search"
+          />
+          {search && (
+            <button className="absolute right-1 top-1/2 -translate-y-1/2 rounded-full cursor-pointer bg-myBlack/5 hover:bg-myBlack/15 p-2 transition-colors" onClick={() => setSearch("")}>
+              <XIcon size={24} />
+            </button>
+          )}
+        </div>
+      </div>
+
+      {filteredData.length === 0 && searchTerm ? (
+        <div className="bg-white/5 border border-white rounded-3xl p-6 text-center">
+          <p className="text-white">No results found for &quot;{searchTerm}&quot;</p>
+        </div>
+      ) : (
+        <section className="px-0 lg:px-[3px] space-y-3 lg:space-y-5">
+          {filteredData.map((item) => (
+            <DealershipItem item={item} key={item.id} />
+          ))}
+        </section>
+      )}
     </section>
   );
 }

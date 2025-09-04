@@ -24,14 +24,14 @@ export const schema = z.object({
     .min(5, "Minimum 5 characters required")
     .max(255, "Maximum 255 characters allowed"),
 
-  /* postcode: z
+  pay_options: z
+    .array(z.string())
+    .min(1, "At least one of them should be selected"),
+
+  postcode: z
     .string()
     .regex(/^[a-zA-Z0-9]*$/, "Only alphanumeric characters are allowed")
     .max(30, "Maximum 30 characters allowed"),
-
-  pay_later: z.boolean(),
-
-  pay_now: z.boolean(), */
 });
 
 export type IFormData = z.infer<typeof schema>;
