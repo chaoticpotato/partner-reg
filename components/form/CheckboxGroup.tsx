@@ -43,7 +43,7 @@ export default function CheckboxGroup({
         ))}
       </div>
 
-      {error && <span className="block mt-[7px] text-myRed">{error}</span>}
+      {error && <span className="field-error">{error}</span>}
     </div>
   );
 }

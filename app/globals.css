@@ -55,8 +55,16 @@ body {
     @apply rounded-full border border-myBlack focus:border-myOrange focus:ring-0 focus-visible:outline-0 h-12 bg-white transition-colors duration-150 px-4 font-sans w-full;
   }
 
+  .textbox::placeholder {
+    color: #737373
+  }
+
   .field-status {
     @apply absolute right-0 -translate-x-full top-1/2 -translate-y-1/2 size-5 pointer-events-none select-none;
+  }
+
+  .field-error {
+    @apply block text-xs leading-4 text-myRed mt-[7px]
   }
 
   /* custom checkbox */

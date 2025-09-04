@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
 
 import Input from "@/components/form/Input";
@@ -22,10 +22,12 @@ import SuccessFrame from "./SuccessFrame";
 import { prepareData } from "../lib/utils";
 import CheckboxGroup from "@/components/form/CheckboxGroup";
 import { WrenchIcon } from "@phosphor-icons/react/dist/ssr";
+import Postcode from "@/components/form/Postcode";
 
 export default function RegisterForm() {
   const {
     register,
+    control,
     handleSubmit,
     formState: { errors, isValid, isSubmitted },
     watch,
@@ -100,13 +102,18 @@ export default function RegisterForm() {
         isValid={!errors.email_address && watch("email_address")?.length > 0}
       />
 
-      <Input
-        icon={EnvelopeSimpleIcon}
-        label="Postcode"
-        {...register("postcode")}
-        error={errors.postcode?.message}
-        placeholder="Start typing to match your address"
-        isValid={!errors.postcode && watch("postcode")?.length > 0}
+      <Controller
+        name="postcode"
+        control={control}
+        render={({ field }) => (
+          <Postcode
+            value={field.value}
+            onChange={field.onChange}
+            placeholder="e.g. N61BA"
+            error={errors.postcode?.message}
+            isValid={!errors.postcode && watch("postcode")?.length > 0}
+          />
+        )}
       />
 
       <CheckboxGroup

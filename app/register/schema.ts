@@ -29,7 +29,8 @@ export const schema = z.object({
     .min(1, "At least one of them should be selected"),
 
   postcode: z
-    .string()
+    .string("Postcode is required")
+    .min(1, "Postcode is required")
     .regex(/^[a-zA-Z0-9]*$/, "Only alphanumeric characters are allowed")
     .max(30, "Maximum 30 characters allowed"),
 });

@@ -48,7 +48,7 @@ export default function Input({
         )}
       </span>
 
-      {error && <span className="block mt-[7px] text-myRed">{error}</span>}
+      {error && <span className="field-error">{error}</span>}
     </label>
   );
 }

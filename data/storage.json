@@ -1,5 +1,25 @@
 [
   {
+    "id": "4f3a1b54-69e6-426a-902d-eeee2327a204",
+    "name": "Garage32",
+    "company": "Bumper Tr",
+    "mobile_phone": "07413077351",
+    "email_address": "info@bumber.co.uk",
+    "postcode": "N64AD",
+    "pay_later": true,
+    "pay_now": false
+  },
+  {
+    "id": "90063bab-b1cc-4568-9f71-1b7e66f643b8",
+    "name": "GarageStuff",
+    "company": "Bumper Tr",
+    "mobile_phone": "07413077351",
+    "email_address": "info@bumber.co.uk",
+    "postcode": "",
+    "pay_later": false,
+    "pay_now": true
+  },
+  {
     "id": "3",
     "name": "Bumper Garages",
     "company": "Bumper Inc,",
